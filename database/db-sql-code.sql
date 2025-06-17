@@ -37,8 +37,22 @@ VALUES ('Custom'),
     ('Truck'),
     ('Sedan');
 
-    UPDATE inventory SET inv_image=replace(inv_image,'/images','/images/vehicles'), inv_thumbnail=replace(inv_thumbnail, '/images', '/images/vehicles');
-    UPDATE inventory SET inv_description = REPLACE(inv_description, 'this is the ar you need', 'this is the car you need') WHERE inv_model LIKE '%Camaro%';
+UPDATE inventory SET inv_image=replace(inv_image,'/images','/images/vehicles'), inv_thumbnail=replace(inv_thumbnail, '/images', '/images/vehicles');
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'this is the ar you need', 'this is the car you need') WHERE inv_model LIKE '%Camaro%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'however with a little tlc it', 'However, with a little tlc, it') WHERE inv_model LIKE '%Special%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'now you can with the batmobile', 'Now you can with the Batmobile') WHERE inv_model LIKE '%Custom%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'you straight from the 90s from Aspen', 'you. Straight from the 90s from Aspen') WHERE inv_make LIKE '%Dog%';
+UPDATE inventory SET inv_color = REPLACE(inv_color, 'Red', 'Blue/yellow') WHERE inv_model LIKE '%Aerocar%';
+UPDATE inventory SET inv_color = REPLACE(inv_color, 'purple', 'Blue') WHERE inv_model LIKE '%Truck%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'of there', 'of their') WHERE inv_model LIKE '%Machine%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'production. You can get it in any color you want as long as it is black.', 'production.') WHERE inv_model LIKE '%Model T%';
+UPDATE inventory SET inv_color = REPLACE(inv_color, 'Blue', 'White') WHERE inv_model LIKE '%Adventador%';
+UPDATE inventory SET inv_color = REPLACE(inv_color, 'Silver', 'Black') WHERE inv_model LIKE '%Camaro%';
+UPDATE inventory SET inv_description = REPLACE(inv_description, 'offroading weather', 'offroading, whether') WHERE inv_model LIKE '%Wrangler%';
+UPDATE inventory SET inv_color = REPLACE(inv_color, 'Yellow', 'Silver') WHERE inv_model LIKE '%Hummer%';
+
+
+
 
 -- Data for table `inventory`
 INSERT INTO public.inventory (
