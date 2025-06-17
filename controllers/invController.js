@@ -1,8 +1,8 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
- 
+
 const invCont = {}
- 
+
 /* ***************************
  *  Build inventory by classification view
  * ************************** */
@@ -18,7 +18,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
- 
+
 /* ***************************
  *  Build vehicle detail view
  *  Assignment 3, Task 1
@@ -37,7 +37,7 @@ invCont.buildDetail = async function (req, res, next) {
     htmlData,
   })
 }
- 
+
 /* ****************************************
  *  Process intentional error
  *  Assignment 3, Task 3
@@ -45,8 +45,6 @@ invCont.buildDetail = async function (req, res, next) {
 invCont.throwError = async function (req, res) {
   throw new Error("I am an intentional error")
 }
- 
- 
- 
- 
+
+
 module.exports = invCont

@@ -15,7 +15,7 @@ if (process.env.NODE_ENV == "development") {
       rejectUnauthorized: false,
     },
   })
- 
+
   // Added for troubleshooting queries
   // during development
   module.exports = {
@@ -36,4 +36,3 @@ if (process.env.NODE_ENV == "development") {
   })
   module.exports = pool
 }
-

@@ -232,3 +232,22 @@ img {
   text-decoration: underline;
 }
 
+
+
+#detail #vehicle-display {
+    margin: 0 0 1rem;
+  }
+
+  #vehicle-display>div {
+    display: flex;
+  }
+
+  .imagePrice {
+    flex: 1 0 45%;
+    margin-right: 1rem;
+  }
+
+  #vehicle-display #mainImage {
+    width: auto;
+    object-fit: contain;
+  }
