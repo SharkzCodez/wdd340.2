@@ -36,6 +36,10 @@ VALUES ('Custom'),
     ('SUV'),
     ('Truck'),
     ('Sedan');
+
+    UPDATE inventory SET inv_image=replace(inv_image,'/images','/images/vehicles'), inv_thumbnail=replace(inv_thumbnail, '/images', '/images/vehicles');
+    UPDATE inventory SET inv_description = REPLACE(inv_description, 'this is the ar you need', 'this is the car you need') WHERE inv_model LIKE '%Camaro%';
+
 -- Data for table `inventory`
 INSERT INTO public.inventory (
         inv_make,
