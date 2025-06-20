@@ -12,32 +12,41 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require('./utilities/index')
-/*const session = require("express-session")*/
+const accountRoute = require("./routes/accountRoute")
+const utilities = require("./utilities/")
+const session = require("express-session")
 const pool = require('./database/')
-
-
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") //not at views root
-
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
+ * Between the request and response
  * ************************/
- /*app.use(session({
-  store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: true,
-    pool,
-  }),
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: 'sessionId',
-}))
+// Unit 4, Sessions & Messages Activity
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true,
+      pool,
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "sessionId",
+  })
+)
+// Unit 4, Sessions & Messages Activity
+// Express Messages Middleware
+app.use(require("connect-flash")())
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res)
+  next()
+})
+// Unit 4, Process Registration Activity
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -45,17 +54,37 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-*/
+
+// Unit 4, Process Registration Activity
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Unit 5 Authentication cookie use
+app.use(cookieParser())
+// Unit 5 JWTToken
+app.use(utilities.checkJWTToken)
+
+/* ***********************
+ * View Engine And Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
+
+
+
+
 
 /* ***********************
  * Routes
  *************************/
 app.use(static)
-//Index Route
+// Index route - Unit 3, Robust Error Handling activity
 app.get("/", utilities.handleErrors(baseController.buildHome))
-
-// Inventory routes
+// Inventory routes - Unit 3, Build Inventory route activity
 app.use("/inv", inventoryRoute)
+// Account routes - Unit 4, Deliver Login activity
+app.use("/account", accountRoute)
 
 
 

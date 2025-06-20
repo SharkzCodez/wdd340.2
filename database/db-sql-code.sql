@@ -52,6 +52,14 @@ UPDATE inventory SET inv_description = REPLACE(inv_description, 'offroading weat
 UPDATE inventory SET inv_color = REPLACE(inv_color, 'Yellow', 'Silver') WHERE inv_model LIKE '%Hummer%';
 
 
+UPDATE public.account
+SET account_type = 'Employee'
+WHERE account_firstname LIKE '%Employee%';
+
+UPDATE public.account
+SET account_type = 'Admin'
+WHERE account_firstname LIKE '%Manager%';
+
 
 
 -- Data for table `inventory`
